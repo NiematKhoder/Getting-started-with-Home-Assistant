@@ -1,0 +1,45 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# template:
+#   - sensor:
+#       - name: "Smart Trash Can"
+#         state: "{{ 0 }}"
+#         attributes:
+#           status: "Ready"
+#           location: "Building A, Room 101"
+#           trash_can_id: "TC-001"
+#           trash_count: 0
+
+  
+mqtt:
+  # broker: localhost
+  # port: 1883
+  # username: mqttuser
+  # password: 123456
+  sensor:
+    - name: "Smart Trash Can Fill Percentage"
+      state_topic: "smart_trash_can/fill_percentage"
+      unit_of_measurement: "%"
+      device_class: "pressure"
+
+    - name: "Smart Trash Can Motion Status"
+      state_topic: "smart_trash_can/motion"
+
+    - name: "Smart Trash Can Location"
+      state_topic: "smart_trash_can/location"
+
+    - name: "Smart Trash Can ID"
+      state_topic: "smart_trash_can/id"
+
+    - name: "Smart Trash Can Trash Count"
+      state_topic: "smart_trash_can/trash_count"

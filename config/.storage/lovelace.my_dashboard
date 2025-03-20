@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.my_dashboard",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Trash Can",
+          "path": "trash_can",
+          "icon": "mdi:delete-outline",
+          "cards": [
+            {
+              "type": "gauge",
+              "entity": "sensor.smart_trash_can_fill_percentage",
+              "name": "Fill Percentage",
+              "min": 0,
+              "max": 100,
+              "unit": "%"
+            },
+            {
+              "type": "entities",
+              "title": "Smart Trash Can Details",
+              "entities": [
+                {
+                  "entity": "sensor.smart_trash_can_motion_status",
+                  "name": "Motion Status"
+                },
+                {
+                  "entity": "sensor.smart_trash_can_location",
+                  "name": "Location"
+                },
+                {
+                  "entity": "sensor.smart_trash_can_id",
+                  "name": "Trash Can ID"
+                },
+                {
+                  "entity": "sensor.smart_trash_can_trash_count",
+                  "name": "Trash Count"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

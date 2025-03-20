@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "core.restore_state",
+  "data": [
+    {
+      "state": {"entity_id":"person.niemat","state":"unknown","attributes":{"editable":true,"id":"niemat","device_trackers":[],"user_id":"735d9c7d52ec4d54a311a36a69bc6c33","friendly_name":"Niemat"},"last_changed":"2025-03-20T10:30:30.849604+00:00","last_reported":"2025-03-20T10:30:33.248608+00:00","last_updated":"2025-03-20T10:30:33.248608+00:00","context":{"id":"01JPSHNKH020DA0PE9VCFJRE14","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    },
+    {
+      "state": {"entity_id":"conversation.home_assistant","state":"unknown","attributes":{"friendly_name":"Home Assistant","supported_features":1},"last_changed":"2025-03-20T10:30:32.781865+00:00","last_reported":"2025-03-20T10:30:32.781865+00:00","last_updated":"2025-03-20T10:30:32.781865+00:00","context":{"id":"01JPSHNK2DT31Y4R2GX873TQSG","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    },
+    {
+      "state": {"entity_id":"tts.google_translate_en_com","state":"unknown","attributes":{"friendly_name":"Google Translate en com"},"last_changed":"2025-03-20T10:30:33.244566+00:00","last_reported":"2025-03-20T10:30:33.244566+00:00","last_updated":"2025-03-20T10:30:33.244566+00:00","context":{"id":"01JPSHNKGWMFVN2K47D9ASA32P","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.smart_trash_can_fill_percentage","state":"58","attributes":{"unit_of_measurement":"%","device_class":"pressure","friendly_name":"Smart Trash Can Fill Percentage"},"last_changed":"2025-03-20T10:45:22.390911+00:00","last_reported":"2025-03-20T10:45:22.390911+00:00","last_updated":"2025-03-20T10:45:22.390911+00:00","context":{"id":"01JPSJGQTP0NRN93F72KV1QEAX","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "58",
+        "native_unit_of_measurement": "%"
+      },
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.smart_trash_can_motion_status","state":"detected","attributes":{"friendly_name":"Smart Trash Can Motion Status"},"last_changed":"2025-03-20T10:45:20.386605+00:00","last_reported":"2025-03-20T10:45:20.386605+00:00","last_updated":"2025-03-20T10:45:20.386605+00:00","context":{"id":"01JPSJGNW21ZQFVV4JQ884JW70","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "detected",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.smart_trash_can_location","state":"Building B, Room 202","attributes":{"friendly_name":"Smart Trash Can Location"},"last_changed":"2025-03-20T10:45:22.391741+00:00","last_reported":"2025-03-20T10:45:22.391741+00:00","last_updated":"2025-03-20T10:45:22.391741+00:00","context":{"id":"01JPSJGQTQRC1Y26M11P7AZSR1","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "Building B, Room 202",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.smart_trash_can_id","state":"TC-002","attributes":{"friendly_name":"Smart Trash Can ID"},"last_changed":"2025-03-20T10:45:20.387127+00:00","last_reported":"2025-03-20T10:45:20.387127+00:00","last_updated":"2025-03-20T10:45:20.387127+00:00","context":{"id":"01JPSJGNW36D52FR15ZEF6VDD9","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "TC-002",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.smart_trash_can_trash_count","state":"2","attributes":{"friendly_name":"Smart Trash Can Trash Count"},"last_changed":"2025-03-20T10:45:22.393285+00:00","last_reported":"2025-03-20T10:45:22.393285+00:00","last_updated":"2025-03-20T10:45:22.393285+00:00","context":{"id":"01JPSJGQTS56G7JK53ESEP02MC","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "2",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-03-20T10:45:33.173483+00:00"
+    }
+  ]
+}

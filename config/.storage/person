@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "minor_version": 1,
+  "key": "person",
+  "data": {
+    "items": [
+      {
+        "id": "niemat",
+        "name": "Niemat",
+        "user_id": "735d9c7d52ec4d54a311a36a69bc6c33",
+        "device_trackers": []
+      }
+    ]
+  }
+}
