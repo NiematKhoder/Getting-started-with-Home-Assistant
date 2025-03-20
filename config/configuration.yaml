@@ -22,7 +22,7 @@ scene: !include scenes.yaml
 
   
 mqtt:
-  # broker: localhost
+  # broker: mosquitto_homeassistant
   # port: 1883
   # username: mqttuser
   # password: 123456
