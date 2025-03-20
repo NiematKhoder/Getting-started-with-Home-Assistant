@@ -168,6 +168,147 @@ Before you begin, **ensure that the Docker Engine is running on your Windows OS*
 
 ---
 
+## Enabling Data Exchange using MQTT 🚀
+
+In this section, you'll learn how to create virtual sensors that publish data via MQTT, while Home Assistant subscribes to the topics to visualize that data on your dashboard. This guide is based on the original tutorial from [this guide](https://gbouloukakis.com/courses/csc4255-w25/labs/mqtt/).
+
+### Overview of MQTT 📡
+
+MQTT (Message Queuing Telemetry Transport) is a lightweight publish/subscribe messaging protocol, perfect for IoT applications. In this project:
+- **Virtual Sensors** publish data to an MQTT broker.
+- **Home Assistant** acts as the subscriber, receiving updates and presenting them in its interface.
+
+### Key Steps 🛠️
+
+- Run Home Assistant in a container.
+- Set up an MQTT broker (e.g., Eclipse Mosquitto) in a separate container.
+- Configure Home Assistant to connect to the MQTT broker.
+- Create MQTT sensors in the Home Assistant configuration.
+- Publish sensor data from your virtual sensors to the MQTT broker.
+- Visualize the Smart Trash Can attributes in Home Assistant’s dashboard.
+
+### Prerequisites ✅
+
+- Docker environment already set up.
+- Home Assistant container is up and running (using `docker run` or Docker Compose).
+
+### Configuration for Mosquitto
+
+1. **Create the Configuration Files:**  
+   In the folder structure `./mosquitto/config`, create the following file:
+
+   **mosquitto.conf:**
+   ```conf
+   listener 1883
+   allow_anonymous false
+   password_file /mosquitto/config/passwords.txt
+   ```
+
+2. **Create a Password File:**  
+   Use the provided `Create_pass.py` script in this repository to generate your own password file.
+> [!IMPORTANT]
+> **Ensure that the `mosquitto/config/` folder already contains an empty `passwords.txt` file, as the script assumes its existence; otherwise, it will throw an error.**
+
+4. **Update the Docker Compose File:**  
+   Use the provided `docker-compose.yml` in this repository.
+
+5. **Restart Containers:**  
+   Run the following commands:
+   ```bash
+   docker compose down
+   docker compose up -d
+   ```
+   After this step, both the Mosquitto and Home Assistant containers should be running on **localhost**. 🎉
+
+### Configure MQTT Integration in Home Assistant
+
+Now that the MQTT broker is running, configure Home Assistant to connect to it. Since Home Assistant and Mosquitto share the same network, **do not use `localhost` for the broker.** Instead, use the container name.
+
+1. **Update your `configuration.yaml` file:**
+   ```yaml
+   mqtt:
+     broker: mosquitto_homeassistant
+     port: 1883
+     username: mqttuser
+     password: <your_password>
+   ```
+2. **Restart Home Assistant:**  
+   The configuration is loaded at startup, so restart the container using:
+   ```bash
+   docker-compose restart
+   ```
+   
+> [!NOTE]
+> If you configure MQTT via Home Assistant's UI (Settings > Devices & Services > Add Integration), ensure you provide the same information. Also, setting the broker to `localhost` will cause > Home Assistant to reference itself instead of the Mosquitto container, resulting in a failed integration.
+
+### Defining the Smart Trash Can as MQTT Sensors in Home Assistant
+
+Edit your `configuration.yaml` file. Comment out the previous sensor template and add the following MQTT sensors:
+
+```yaml
+mqtt:
+  sensor:
+    - name: "Smart Trash Can Fill Percentage"
+      state_topic: "smart_trash_can/fill_percentage"
+      unit_of_measurement: "%"
+      device_class: "pressure"
+
+    - name: "Smart Trash Can Motion Status"
+      state_topic: "smart_trash_can/motion"
+
+    - name: "Smart Trash Can Location"
+      state_topic: "smart_trash_can/location"
+
+    - name: "Smart Trash Can ID"
+      state_topic: "smart_trash_can/id"
+
+    - name: "Smart Trash Can Trash Count"
+      state_topic: "smart_trash_can/trash_count"
+```
+
+Restart Home Assistant again to load these sensors.
+
+### Changing the Dashboard View to Reflect the Changes
+
+Since you are now using individual MQTT sensors rather than a single sensor with attributes, update your Lovelace configuration to reference each sensor directly. Modify your dashboard (via the Raw Configuration Editor under the Dashboard menu) like this:
+
+```yaml
+views:
+  - title: Trash Can
+    path: trash_can
+    icon: mdi:delete-outline
+    cards:
+      - type: gauge
+        entity: sensor.smart_trash_can_fill_percentage
+        name: Fill Percentage
+        min: 0
+        max: 100
+        unit: '%'
+
+      - type: entities
+        title: Smart Trash Can Details
+        entities:
+          - entity: sensor.smart_trash_can_motion_status
+            name: Motion Status
+          - entity: sensor.smart_trash_can_location
+            name: Location
+          - entity: sensor.smart_trash_can_id
+            name: Trash Can ID
+          - entity: sensor.smart_trash_can_trash_count
+            name: Trash Count
+```
+> [!NOTE]
+> Each sensor is referenced by an identifier generated from its `name` field. Home Assistant converts the name to lowercase and removes spaces to form a unique identifier (e.g., `sensor.smart_trash_can_fill_percentage`).
+
+### Publishing Data from Virtual Sensors (MQTT Publisher) 
+
+Use the python script `publisher.py` in this repository. This script publishes random data on each topic at 2-second intervals for 20 iterations. As data is published, Home Assistant’s entities will update almost immediately with the new values. 🚀
+
+---
+
+_**Congratulations!🎉🎉 You've learned how to integrate Home Assistant with MQTT, configure Mosquitto, define MQTT sensors, update your dashboard view, and publish data from virtual sensors. Enjoy your smart home automation journey! 😎**_
+
+
 
 
 
